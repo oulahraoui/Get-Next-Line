@@ -6,7 +6,7 @@
 /*   By: ooulahra <ooulahra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:45:47 by ooulahra          #+#    #+#             */
-/*   Updated: 2026/11/03 11:36:02 by ooulahra         ###   ########.fr       */
+/*   Updated: 2026/11/16 20:06:44 by ooulahra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_next_list(t_list **lst)
 
 char	*get_line(t_list *lst)
 {
-	int	len;
+	int		len;
 	char	*buffer;
 
 	len = len_n(lst);
@@ -74,10 +74,10 @@ void	append_list(t_list **lst, char *buf, int fd)
 
 void	add_node(t_list **lst, int fd)
 {
-	int	read_bytes;
+	int		read_bytes;
 	char	*buf_str;
 
-	while(!newline(lst[fd]))
+	while (!newline(lst[fd]))
 	{
 		buf_str = malloc(BUFFER_SIZE + 1);
 		if (!buf_str)
@@ -96,8 +96,8 @@ void	add_node(t_list **lst, int fd)
 char	*get_next_line(int fd)
 {
 	static t_list	*list[2000];
-	char		*line;
-	
+	char			*line;
+
 	if (fd < 0 || fd > 2000 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
 	add_node(list, fd);

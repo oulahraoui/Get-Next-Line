@@ -6,7 +6,7 @@
 /*   By: ooulahra <ooulahra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 10:48:31 by ooulahra          #+#    #+#             */
-/*   Updated: 2026/11/03 10:48:32 by ooulahra         ###   ########.fr       */
+/*   Updated: 2026/11/16 20:09:43 by ooulahra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	len_n(t_list *lst)
 	while (lst)
 	{
 		i = 0;
-		while(lst->str[i])
+		while (lst->str[i])
 		{
 			if (lst->str[i] == '\n')
 				return (++len);
@@ -51,7 +51,7 @@ int	newline(t_list *lst)
 	while (lst)
 	{
 		i = 0;
-		while(lst->str[i])
+		while (lst->str[i])
 		{
 			if (lst->str[i] == '\n')
 				return (1);
@@ -90,7 +90,7 @@ void	copy_str(t_list *lst, char *s)
 void	ft_free_it(t_list **lst, t_list *clean, char *buf)
 {
 	t_list	*tmp;
-	
+
 	if (!(*lst))
 		return ;
 	while (*lst)
