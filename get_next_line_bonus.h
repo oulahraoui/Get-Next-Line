@@ -6,7 +6,7 @@
 /*   By: ooulahra <ooulahra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:52:12 by ooulahra          #+#    #+#             */
-/*   Updated: 2026/11/16 20:08:57 by ooulahra         ###   ########.fr       */
+/*   Updated: 2026/11/17 21:21:39 by ooulahra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_list
 }	t_list;
 
 t_list		*findlastnode(t_list *lst);
-void		add_node(t_list **lst, int fd);
+void		add_node(t_list **lst, int fd, size_t size);
 void		append_list(t_list **lst, char *buf, int fd);
 void		copy_str(t_list *lst, char *s);
 void		ft_free_it(t_list **lst, t_list *clean, char *buf);

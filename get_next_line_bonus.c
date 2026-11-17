@@ -6,13 +6,13 @@
 /*   By: ooulahra <ooulahra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:45:47 by ooulahra          #+#    #+#             */
-/*   Updated: 2026/11/17 21:10:29 by ooulahra         ###   ########.fr       */
+/*   Updated: 2026/11/17 21:21:32 by ooulahra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	get_next_list(t_list **lst)
+void	get_next_list(t_list **lst, size_t size)
 {
 	t_list	*last;
 	t_list	*clean;
@@ -20,7 +20,7 @@ void	get_next_list(t_list **lst)
 	int		j;
 	char	*buf;
 
-	buf = malloc(BUFFER_SIZE + 1);
+	buf = malloc(size + 1);
 	clean = malloc(sizeof(t_list));
 	last = findlastnode(*lst);
 	if (!buf || !clean)
@@ -72,17 +72,17 @@ void	append_list(t_list **lst, char *buf, int fd)
 	new->next = NULL;
 }
 
-void	add_node(t_list **lst, int fd)
+void	add_node(t_list **lst, int fd, size_t size)
 {
 	int		read_bytes;
 	char	*buf_str;
 
 	while (!newline(lst[fd]))
 	{
-		buf_str = malloc(BUFFER_SIZE + 1);
+		buf_str = malloc(size + 1);
 		if (!buf_str)
 			return ;
-		read_bytes = read(fd, buf_str, BUFFER_SIZE);
+		read_bytes = read(fd, buf_str, size);
 		if (read_bytes <= 0)
 		{
 			free(buf_str);
@@ -97,15 +97,17 @@ char	*get_next_line(int fd)
 {
 	static t_list	*list[2000];
 	char			*line;
+	size_t			size;
 
 	if (fd < 0 || fd > 2000 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
-	add_node(list, fd);
+	size = (size_t)BUFFER_SIZE;
+	add_node(list, fd, size);
 	if (!list[fd])
 		return (NULL);
 	line = get_line(list[fd]);
 	if (!line)
 		return (NULL);
-	get_next_list(&list[fd]);
+	get_next_list(&list[fd], size);
 	return (line);
 }
